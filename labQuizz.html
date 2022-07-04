@@ -1,0 +1,99 @@
+<div class="container-fluid my-5 pt-5" id="content">
+    <div class="row" ng-show="!inProgess">
+        <div class="col">
+            <div
+                style="background-image: url('image/bgQuizz.jpg'); background-repeat: no-repeat; background-size: cover; height: 800px; justify-content: center; align-items: center; display: flex;">
+                <!-- HTML !-->
+                <button class="button-49" role="button" ng-click="start()">Bắt đầu !</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="inProgess">
+        <div class="container">
+            <div class="row" ng-show="quizOver">
+                <div class="col text-center">
+                    <div class="row col p-0" style="margin-top: 20px; width: 1140px;" ng-show="quizOver">
+                        <div class="col text-center">
+                            <h3 style="color: red;">KẾT THÚC BÀI THI !</h3>
+                            <div class="col">
+                                <span class="float-center badge badge-success"
+                                    style="padding: 7px; font-size: 16px; font-weight: 500; margin-right: 10px;">Điểm
+                                    của
+                                    bạn: {{score}}/10</span>
+                            </div>
+                            <div class="card">
+                            {{questions}}
+                        </div>
+                        </div>
+                    </div>
+                    <!-- <button class="btn btn-warning" ng-click="reset()">Làm lại</button> -->
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div ng-show="!quizOver">
+                <div class="row">
+                    <div class="col text-center" ng-controller="countDown">
+                        <h2><i class="fas fa-clock"
+                                style="color: orange;"></i>{{(countdown-countdown%60)/60}}:{{countdown%60}}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card border-info">
+                            <div class="card-header text-white" style="background-color: orange;">
+                                <img src="image/Subject.png" width="30" class="border border-primary rounded-lg" alt="">
+                                <span>{{subName}}</span>
+                            </div>
+                            <span class="badge badge-success"
+                                style="padding: .28em .7em; font-size: 90%; font-weight: 500; float: right;">Điểm:
+                                {{score}}/10</span>
+                            <div class="card-body">
+                                <div class="card-text" style="font-weight: 500;">
+                                    <label>{{question}}</label>
+                                    <hr>
+                                    <div class="form-check" ng-repeat="option in options">
+                                        <label class="form-check-label" for="Radios1">
+                                            <input class="form-check-input" type="radio" name="answers"
+                                                value="{{option.Id}}">
+                                            {{option.Text}}
+                                        </label>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div ng-show="!answerMode">
+                                    <button class="btn btn-warning" ng-click="checkAnswer()" data-toggle="modal"
+                                        data-target="#myModal">Chọn</button>
+                                </div>
+                                <div ng-show="answerMode">
+                                    <button class="btn btn-warning" ng-click="nextQuestion()">Tiếp tục</button>
+                                </div>
+                                <button class="btn btn-warning float-right" ng-click="endgame()">Kết thúc</button>
+                                <span class="float-right" style="padding: .28em .7em;">Trang: {{page}}/10</span>
+                                <div class="modal fade" id="myModal">
+                                    <div class="modal-dialog modal-dialog-centered" ng-show="correctAns">
+                                        <div class="card">
+                                            <img src="image/correct.gif" alt="" height="350px" width="350px">
+                                            <div class="float-right"><Strong>Chính xác ! </Strong></div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-dialog modal-dialog-centered" ng-show="!correctAns">
+                                        <div class="card">
+                                            <img src="image/false.gif" alt="" height="350px" width="350px">
+                                            <div class="float-right"><Strong>Sai rồi ! </Strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

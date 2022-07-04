@@ -1,0 +1,58 @@
+<div class="container-fluid pt-5 mt-3">
+    <div class="row">
+        <div class="col">
+            <img src="image/banner.gif" alt="" class="img-fluid" width="100%">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="jumbotron bg-warning">
+                <h1 class="text-monospace">Phần mềm thi online</h1>
+                <p class="text-monospace">Bootstrap là một frameworks cho phép thiết kế website responsive nhanh
+                    hơn
+                    và dễ dàng hơn</p>
+                <p class="text-monospace">Angular JS được biết là một framework được phát triển trên nền tảng
+                    JavaScript dùng dễ khởi tạo các ứng dụng RIA</p>
+                <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-primary">Xem
+                    thêm...</button>
+                <div id="demo" class="collapse">
+                    Lorem ipsum dolor text....
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <Strong><h1 class="text-center text-primary">MÔN HỌC</h1></Strong>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div ng-repeat="p in listSp | limitTo: 4 : begin">
+            <div class="col-sm-12 col-md-3">
+                <div class="card float-left m-3 " style="width: 19rem; height: 21rem;">
+                    <div class="card-header text-center">{{p.Name}}</div>
+                    <div class="card-body text-center">
+                        <img src="image/{{p.Logo}}" alt="">
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="#!3/{{p.Id}}/{{p.Name}}" class="btn btn-warning" role="button">Học Bài</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="text-center">
+                <button style="font-size: 15px; font-weight: bold;" class="btn btn-secondary"
+                    ng-click="first()"><<</button>
+                <button style="font-size: 15px; font-weight: bold;" class="btn btn-secondary"
+                    ng-click="prev()"><</button>
+                <button style="font-size: 15px; font-weight: bold;" class="btn btn-secondary"
+                    ng-click="next()">></button>
+                <button style="font-size: 15px; font-weight: bold;" class="btn btn-secondary"
+                    ng-click="last()">>></button>
+            </div>
+        </div>
+    </div>
+</div>

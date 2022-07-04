@@ -1,0 +1,29 @@
+<div class="container pt-5 mt-5">
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th scope="col">Họ và tên</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mật khẩu</th>
+                    <th scope="col">Ngày sinh</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in listUsers">
+                      <td>{{$index}}</td>
+                    <th scope="row">{{x.fullname}}</th>
+                    <td>{{x.email}}</td>
+                    <td>{{x.password}}</td>
+                    <td>{{x.birthday}}</td>
+                    <td>
+                        <a href="" ng-hide="x.email == info.email" class="btn btn-xs btn-danger" ng-click="remove_user($index)">Xóa</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

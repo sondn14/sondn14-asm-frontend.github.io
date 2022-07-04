@@ -1,0 +1,113 @@
+<style>
+    body {
+        background-image: url('image/bgQuizz.jpg');
+    }
+
+    .container {
+        flex-wrap: wrap
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        background-color: #e77b3d;
+        width: 350px;
+        margin-top: -60px
+    }
+
+    .btn-primary {
+        border: none;
+        background: #728de9;
+        margin-bottom: 60px
+    }
+
+    .btn-primary small {
+        color: #9FB7FD
+    }
+
+    .btn-primary span {
+        font-size: 13px
+    }
+
+    .card.two {
+        border-top-right-radius: 60px;
+        border-top-left-radius: 0
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 2rem
+    }
+
+    .form-control {
+        border: none;
+        border-radius: 0;
+        outline: 0;
+        border-bottom: 1.5px solid #E6EBEE
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-radius: 0;
+        border-bottom: 2px solid #8A97A8
+    }
+
+    .form-control-placeholder {
+        position: absolute;
+        top: 15px;
+        left: 10px;
+        transition: all 200ms;
+        opacity: 0.5;
+        font-size: 80%
+    }
+
+    .form-control:focus+.form-control-placeholder,
+    .form-control:valid+.form-control-placeholder {
+        font-size: 80%;
+        transform: translate3d(0, -90%, 0);
+        opacity: 1;
+        top: 10px;
+        color: #ee4d4d
+    }
+
+    .btn-block {
+        border: none;
+        border-radius: 8px;
+        background-color: #e7b734;
+        padding: 10px 0 12px
+    }
+
+    .btn-block:focus {
+        box-shadow: none
+    }
+
+    .btn-block span {
+        font-size: 15px;
+        color: #D0E6FF
+    }
+</style>
+<div class="container-fluid d-flex justify-content-center pt-5 mt-5">
+    <div class="d-flex flex-column justify-content-between">
+        <div class="card mt-3 p-5">
+            <div>
+                <h3 class="mb-5 text-white"><Strong>Đổi thông tin tài khoản !</Strong></h3>
+            </div>
+        </div>
+        <div class="card two bg-white px-5 py-4 mb-3">
+            <form name="bonusf">
+                <div class="form-group"><input type="email" class="form-control" id="mailSign" required ng-model="user.email" disabled><label
+                    class="form-control-placeholder" for="mail">{{info.email}}</label></div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="nameSign" required ng-model="info.fullname" name="txtFullname"><label
+                    class="form-control-placeholder" for="name">Họ và tên</label>
+            </div>
+            <div class="form-group"><input type="text" name="txtNgaySinh" class="form-control" id="birthday" required ng-model="info.birthday"><label
+                    class="form-control-placeholder" for="bithday">Ngày sinh</label>
+                </div>
+            </form>
+
+            <button class="btn btn-primary btn-block btn-lg mt-1 mb-2" type="button" ng-click="update_user()"><span>Đổi Thông tin<i
+                        class="fas fa-long-arrow-alt-right ml-2"></i></span></button>
+        </div>
+    </div>
+</div>

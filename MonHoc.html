@@ -1,0 +1,60 @@
+<div class="container-fluid mt-5 pt-5">
+    <div ng-show="isLogin">
+        <div class="row">
+            <div class="float-left">
+                <div class="form-inline my-2 my-lg-0 mr-5" ng-controller="subCtrl">
+                    <i class='fas fa-user-graduate pl-5' style='font-size:48px;color:rgb(65, 82, 236)'></i>
+                    <li class="nav-item dropdown" style="list-style-type: none;">
+                        <a class="dropdown-toggle pl-2" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{info.fullname}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#" ng-click="logOut()">Đăng xuất</a>
+                            <a class="dropdown-item" href="#!6">Đổi mật khẩu</a>
+                            <a class="dropdown-item" href="#!7">Cập nhật tài khoản</a>
+                            <a class="dropdown-item" href="#!5" ng-show="admin" >Quản lí tài khoản</a>
+                        </div>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-repeat="p in listSp | limitTo: 4 : begin">
+                <div class="col-sm-12 col-md-3">
+                    <div class="card float-left m-3 " style="width: 19rem; height: 21rem;">
+                        <div class="card-header text-center">{{p.Name}}</div>
+                        <div class="card-body text-center">
+                            <img src="image/{{p.Logo}}" alt="">
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="#!3/{{p.Id}}/{{p.Name}}" class="btn btn-warning" role="button">Kiểm tra</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="text-center">
+                    <button style="font-size: 15px; font-weight: bold;" class="btn btn-secondary" ng-click="first()">
+                        << </button>
+                            <button style="font-size: 15px; font-weight: bold;" class="btn btn-secondary"
+                                ng-click="prev()">
+                                < </button>
+                                    <button style="font-size: 15px; font-weight: bold;" class="btn btn-secondary"
+                                        ng-click="next()"> > </button>
+                                    <button style="font-size: 15px; font-weight: bold;" class="btn btn-secondary"
+                                        ng-click="last()"> >> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-danger" ng-hide="isLogin">
+        <Strong>Thông báo! </Strong>Bạn cần phải đăng nhập để làm bài thi.... <button class="btn btn-warning">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#staticBackdrop-dn" style="color: white;">Đăng
+                nhập</a>
+        </button>
+        
+    </div>
+</div>

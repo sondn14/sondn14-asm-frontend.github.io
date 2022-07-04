@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                role="tab" aria-controls="home" aria-selected="true">Home</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <table class="table table-stripe">
+                        <tr>
+                            <td>ID</td>
+                            <td>Tên sản phẩm</td>
+                            <td>Giá bán</td>
+                            <td>Mô tả</td>
+                            <td>Thể loại</td>
+                            <td>Hình ảnh</td>
+                            <td>Tình trạng</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <c:forEach var="p" items="${listProduct}">
+                            <tr>
+                                <td>${p.id}</td>
+                                <td>${p.name}</td>
+                                <td>${p.giaBan}</td>
+                                <td>${p.moTa}</td>
+                                <td>${p.loai.name}</td>
+                                <td><img alt="" src="../images/${p.image}" style="max-width: 100px"></td>
+                                <td>${p.tinhTrang?'Còn hàng' : 'Hết hàng'}</td>
+                                <td><a href="/Sondnph17102_ASM_JAVA4/product/edit?id=${p.id}">Edit</a>
+                                    <a href="/Sondnph17102_ASM_JAVA4/product/delete?id=${p.id}">Delete</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+				<div class="col-6 offset-3">
+					<form action="/Sondnph17102_ASM_JAVA4/product" method="post">
+						<div class="form-group">
+							<label for="name"> Tên sản phẩm : </label> <input type="text"
+								id="name" name="name" class="form-control"
+								value="${product.name}">
+						</div>
+						<br>
+						<div class="form-group">
+							<label for="name"> Giá bán : </label> <input type="number"
+								id="giaBan" name="giaBan" class="form-control" min="0"
+								value="${product.giaBan}">
+						</div>
+						<br>
+						<div class="form-group">
+							<label for="loai"> Loại sản phẩm : </label> <select
+								name="id-loai" class="form-control">
+								<c:forEach var="cate" items="${category}">
+									<option value="${cate.id}"
+										<c:if test="${cate.name == product.loai.name}"> selected = "selected" </c:if>>${cate.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="name"> Tình trạng : </label> <br> <label
+								class="ml-5 pl-5"><input type="radio"
+								class="form-check-input" name="tinhTrang" id="tinhTrang"
+								value="true" ${product.tinhTrang? 'checked' :''} /> Còn hàng</label> <br>
+							<label class="ml-5 pl-5"><input type="radio"
+								class="form-check-input" name="tinhTrang" id="tinhTrang"
+								value="false" ${!product.tinhTrang? 'checked' :''} /> Hết hàng</label>
+						</div>
+						<br>
+						<label for="name">Ảnh sản phẩm</label>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" id="image" name="image"
+								value="${product.image}"><label class="custom-file-label"
+								for="customFile" name="image">${product.image}</label>
+						</div>
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" id="image" name="image" value="${product.image}">
+                            <label class="input-group-text" for="inputGroupFile02">Tải ảnh</label>
+                          </div>
+						<br>
+						<br>
+						<div class="form-group">
+							<label for="name"> Mô tả : </label>
+							<textarea id="moTa" name="moTa" class="form-control"> ${product.moTa}</textarea>
+						</div>
+						<br>
+						<div class="form-group">
+							<button class="btn btn-primary"
+								formaction="/Sondnph17102_ASM_JAVA4/product/create">Create</button>
+							<button class="btn btn-warning"
+								formaction="/Sondnph17102_ASM_JAVA4/product/update?id=${product.id}">Update</button>
+						</div>
+					</form>
+				</div>
+			</div>
+        </div>
+    </div>
+</body>
+
+</html>
